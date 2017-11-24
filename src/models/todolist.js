@@ -4,7 +4,7 @@ const ToDoList = mongoose.model("ToDoList", {
     description: String,
     completed: {
         type: Boolean,
-        required: [true, "Task must have a status"]
+        default: false
     }
 })
 

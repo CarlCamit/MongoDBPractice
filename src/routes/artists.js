@@ -9,22 +9,6 @@ router.get('/artists', (req, res) => {
     })
 })
 
-router.get('/artists/:id', (req, res) => {
-    id = req.params["id"]
-    // Find by a certain attribute inherent to MongoDB
-    Artist.findById(id).then((artist) => {
-        if (artist) {
-            res.json(artist)
-        }
-        else {
-            res.status(404).json({ message: "ID does not belong to an artist"})
-        }
-    })
-    .catch((error) => {
-        res.status(400).json({ error: `Invalid ID` })
-    })
-})
-
 router.post('/artists', (req, res) => {
     const attributes = req.body
     Artist.create(attributes).then((artist) => {
@@ -32,6 +16,22 @@ router.post('/artists', (req, res) => {
     })
     .catch((error) => {
         res.status(400).json({ error: error.message })
+    })
+})
+
+router.get('/artists/:id', (req, res) => {
+    id = req.params["id"]
+    // Find by a certain attribute inherent to MongoDB
+    Artist.findById(id).then((artist) => {
+        if (artist) {
+            res.status(200).json(artist)
+        }
+        else {
+            res.status(404).json({ message: "ID does not belong to an artist"})
+        }
+    })
+    .catch((error) => {
+        res.status(400).json({ error: `Invalid ID` })
     })
 })
 
