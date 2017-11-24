@@ -1,0 +1,35 @@
+GET http://localhost:7000/artists
+
+###
+
+GET http://localhost:7000/artists/5a176c26f774e6ba85117bfa
+
+###
+
+GET http://localhost:7000/artists/7a176c26f774e6ba85117bfa
+
+###
+
+GET http://localhost:7000/artists/7a176c26f774e6ba85117bfa2
+
+###
+
+POST http://localhost:7000/artists
+Content-Type: application/json
+
+{
+    "name": "Spice Girls"
+}
+
+###
+
+PATCH http://localhost:7000/artists/5a176c26f774e6ba85117bfa
+Content-Type: application/json
+
+{
+    "name": "Arctic Monkeys b"
+}
+
+###
+
+DELETE http://localhost:7000/artists/5a176c26f774e6ba85117bfb
