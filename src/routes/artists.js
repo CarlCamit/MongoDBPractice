@@ -31,14 +31,14 @@ router.post('/artists', (req, res) => {
         res.status(201).json(artist)
     })
     .catch((error) => {
-        res.status(400).json({ error: error })
+        res.status(400).json({ error: error.message })
     })
 })
 
 router.patch('/artists/:id', (req, res) => {
     id = req.params["id"]
     const attributes = req.body
-    Artist.findByIdAndUpdate(id, attributes, {new: true}).then((artist) => {
+    Artist.findByIdAndUpdate(id, attributes, {new: true, runValidators: true}).then((artist) => {
         if (artist) {
             res.status(200).json({ message: `Artist with an id: ${id} has been updated to ${artist.name}`})
         }
@@ -47,7 +47,7 @@ router.patch('/artists/:id', (req, res) => {
         }
     })
     .catch((error) => {
-        res.status(400).json({ error: "Invalid ID"})
+        res.status(400).json({ error: error.message })
     })
 })
 
